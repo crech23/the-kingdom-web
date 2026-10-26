@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 440 150" role="img" aria-labelledby="logo-title">
+  <title id="logo-title">The Kingdom</title>
+  <defs>
+    <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f4d58e" />
+      <stop offset=".52" stop-color="#c99a49" />
+      <stop offset="1" stop-color="#f8dfa3" />
+    </linearGradient>
+    <filter id="glow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="2.2" result="blur" />
+      <feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge>
+    </filter>
+  </defs>
+  <g fill="none" stroke="url(#gold)" stroke-linecap="round" stroke-linejoin="round" filter="url(#glow)">
+    <path d="M184 11 202 31 220 9 238 31 256 11 250 47H190Z" stroke-width="3" />
+    <path d="M192 53h56" stroke-width="1.4" />
+    <circle cx="184" cy="11" r="2.5" fill="url(#gold)" stroke="none" />
+    <circle cx="220" cy="9" r="2.5" fill="url(#gold)" stroke="none" />
+    <circle cx="256" cy="11" r="2.5" fill="url(#gold)" stroke="none" />
+  </g>
+  <text x="220" y="102" text-anchor="middle" fill="url(#gold)" font-family="Palatino Linotype, Book Antiqua, Georgia, serif" font-size="41" letter-spacing="5">THE KINGDOM</text>
+  <path d="M77 121h129m48 0h109" fill="none" stroke="url(#gold)" stroke-width="1" />
+  <path d="m220 113 8 8-8 8-8-8Z" fill="url(#gold)" />
+</svg>
