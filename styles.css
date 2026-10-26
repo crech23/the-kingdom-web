@@ -167,7 +167,7 @@ a:focus-visible, button:focus-visible { outline: 3px solid var(--gold); outline-
 .season-photo {
   position: absolute; inset: 0;
   background: linear-gradient(#1118208c, #1118208c),
-              url('public/images/precision.webp') center 25% / cover no-repeat;
+              url('public/images/precision.webp') center top / cover no-repeat;
 }
 .season-content { position: relative; width: min(var(--content), 100%); margin: auto; padding-block: 72px; }
 .season-kicker { color: #f0c875; }
