@@ -54,7 +54,7 @@ a:focus-visible, button:focus-visible { outline: 3px solid var(--gold); outline-
 .brand img, .footer-brand img { width: 100%; height: auto; }
 .main-nav { display: flex; align-items: center; gap: clamp(18px, 2.4vw, 32px); }
 .main-nav > a {
-  font-size: 14px; font-weight: 500; color: #fff;
+  font: 500 14px/1.4 var(--body); color: #fff;
   transition: color .18s ease;
 }
 .main-nav > a:hover { color: #f1d19a; }
@@ -388,7 +388,6 @@ body.lightbox-open { overflow: hidden; }
 @media (max-width: 900px) {
   .site-header { padding-inline: 24px; }
   .main-nav { gap: 15px; }
-  .main-nav > a { font-size: 13px; }
   .section-pad { padding-inline: 32px; }
   .season-content { width: auto; margin-inline: 0; }
   .gallery-grid, .feature-grid { gap: 16px; }
