@@ -1,3 +1,9 @@
+if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+
+window.addEventListener('pageshow', () => {
+  if (!window.location.hash) window.scrollTo(0, 0);
+});
+
 const menuButton = document.querySelector('.menu-toggle');
 const nav = document.querySelector('.main-nav');
 
