@@ -198,6 +198,36 @@ a:focus-visible, button:focus-visible { outline: 3px solid var(--gold); outline-
 .gallery-item figcaption a { display: flex; justify-content: space-between; gap: 8px; }
 .gallery-item figcaption span { color: var(--gold-dark); white-space: nowrap; }
 
+.donation {
+  padding-block: 72px 84px;
+  color: var(--ink);
+}
+.donation-heading { align-items: end; }
+.donation-heading .intro-kicker { margin-bottom: 8px; }
+.donation-heading h2 { max-width: 650px; }
+.donation-heading > p { margin-bottom: 4px; }
+.donation-card {
+  max-width: var(--content); margin: 0 auto; padding: clamp(22px, 4vw, 40px);
+  display: grid; grid-template-columns: 1fr .9fr; gap: clamp(28px, 5vw, 64px);
+  border: 1px solid #c3954d62; border-radius: 6px;
+  background: linear-gradient(135deg, #1a1c1dce, #111519ed);
+}
+.donation-message h3 { margin: 0 0 12px; font-size: 21px; }
+.donation-message p { margin: 0 0 18px; color: var(--muted); line-height: 1.7; }
+.donation-email { margin-top: 4px; }
+.donation-details { margin: 0; display: grid; gap: 12px; }
+.donation-details > div {
+  min-width: 0; display: grid; grid-template-columns: minmax(100px, .75fr) 1.25fr;
+  align-items: center; gap: 10px; padding-bottom: 12px; border-bottom: 1px solid var(--line);
+}
+.donation-details dt { color: var(--muted); font-size: 14px; }
+.donation-details dd { margin: 0; color: var(--ink); font-weight: 600; overflow-wrap: anywhere; }
+.donation-details .donation-account-row { grid-template-columns: 1fr auto; }
+.donation-account-row dt { grid-column: 1 / -1; }
+.donation-account-row dd { font-size: clamp(19px, 2.2vw, 25px); letter-spacing: .06em; }
+.copy-account { min-height: 40px; padding: 9px 12px; font-size: 13px; cursor: pointer; }
+.copy-feedback { min-height: 20px; grid-column: 1 / -1; margin: -5px 0 0; color: var(--gold-dark); font-size: 13px; }
+
 .contact {
   position: relative; overflow: hidden; padding-block: 72px 76px;
   text-align: center; color: #fff; background: transparent;
@@ -281,6 +311,13 @@ a:focus-visible, button:focus-visible { outline: 3px solid var(--gold); outline-
   .season { min-height: 0; }
   .season-content { padding-block: 58px; }
   .season-content > p:not(.season-kicker) { font-size: 15px; }
+  .donation { padding-block: 52px 60px; }
+  .donation-card { grid-template-columns: 1fr; gap: 24px; padding: 22px; }
+  .donation-heading { gap: 12px; }
+  .donation-details > div { grid-template-columns: minmax(90px, .7fr) 1.3fr; }
+  .donation-details .donation-account-row { grid-template-columns: 1fr auto; }
+  .donation-account-row dd { font-size: 19px; }
+  .copy-account { padding-inline: 10px; }
   .gallery-heading { gap: 16px; }
   .gallery-links { width: 100%; }
   .gallery-links .button { flex: 1; }

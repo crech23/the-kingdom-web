@@ -53,3 +53,18 @@ if ('IntersectionObserver' in window && !reduceMotion) {
 
   loopVideos.forEach((video) => videoObserver.observe(video));
 }
+
+const copyAccountButton = document.querySelector('[data-copy-account]');
+const donationAccountNumber = document.querySelector('#donation-account-number');
+const donationCopyFeedback = document.querySelector('#donation-copy-feedback');
+
+if (copyAccountButton && donationAccountNumber && donationCopyFeedback) {
+  copyAccountButton.addEventListener('click', async () => {
+    try {
+      await navigator.clipboard.writeText(donationAccountNumber.textContent.trim());
+      donationCopyFeedback.textContent = 'Número de cuenta copiado';
+    } catch {
+      donationCopyFeedback.textContent = 'Selecciona el número de cuenta para copiarlo';
+    }
+  });
+}
