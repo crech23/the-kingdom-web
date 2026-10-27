@@ -133,8 +133,9 @@ if (lightboxLinks.length && typeof HTMLDialogElement === 'function') {
     if (link.dataset.type === 'video') {
       const video = document.createElement('video');
       video.src = href;
-      video.controls = true;
+      video.controls = false;
       video.autoplay = true;
+      video.muted = true;
       video.loop = true;
       video.playsInline = true;
       video.poster = link.querySelector('video')?.getAttribute('poster') || '';
