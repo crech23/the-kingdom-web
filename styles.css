@@ -247,7 +247,9 @@ a:focus-visible, button:focus-visible { outline: 3px solid var(--gold); outline-
 }
 .donation-message h3 { margin: 0 0 12px; font-size: 21px; }
 .donation-message p { margin: 0 0 18px; color: var(--muted); line-height: 1.7; }
-.donation-email { margin-top: 4px; }
+.donation-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+.donation-actions .button { flex: 1 1 190px; }
+.donation-email { margin-top: 0; }
 .donation-disclosure { margin: 18px 0; border-top: 1px solid var(--line); }
 .donation-disclosure summary {
   display: flex; align-items: center; justify-content: space-between; gap: 16px;
