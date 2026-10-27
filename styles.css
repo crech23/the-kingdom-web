@@ -43,10 +43,11 @@ a:focus-visible, button:focus-visible { outline: 3px solid var(--gold); outline-
 .section-pad { padding-inline: max(24px, calc((100vw - var(--content)) / 2)); }
 
 .site-header {
-  position: absolute; z-index: 20; inset: 0 0 auto;
+  position: fixed; z-index: 20; inset: 0 0 auto;
   min-height: 78px; display: flex; align-items: center; justify-content: space-between;
   gap: 28px; padding-inline: max(24px, calc((100vw - var(--content)) / 2));
-  color: #fff; border-bottom: 1px solid #ffffff30; background: #10182042;
+  color: #fff; border-bottom: 1px solid #ffffff30; background: #101820ed;
+  backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
 }
 .brand, .footer-brand { display: block; flex: 0 0 auto; }
 .brand { width: 124px; }
