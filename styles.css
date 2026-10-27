@@ -271,12 +271,16 @@ a:focus-visible, button:focus-visible { outline: 3px solid var(--gold); outline-
   .site-header { min-height: 68px; padding-inline: 18px; }
   .brand { width: 126px; }
   .menu-toggle {
-    display: flex; flex-direction: column; gap: 6px; padding: 12px;
-    border: 0; background: transparent; cursor: pointer; z-index: 2;
+    width: 52px; height: 48px; display: flex; align-items: center; justify-content: center;
+    padding: 5px; border: 1px solid #d5ad6780; border-radius: 6px;
+    background: #101519c9; cursor: pointer; z-index: 2;
   }
-  .menu-toggle span { width: 23px; height: 2px; background: #f0c875; transition: transform .2s ease; }
-  .menu-toggle[aria-expanded='true'] span:first-child { transform: translateY(4px) rotate(45deg); }
-  .menu-toggle[aria-expanded='true'] span:last-child { transform: translateY(-4px) rotate(-45deg); }
+  .menu-icon {
+    width: 40px; height: 34px; object-fit: contain;
+    filter: drop-shadow(0 0 5px #e0b46690);
+    transition: transform .2s ease;
+  }
+  .menu-toggle[aria-expanded='true'] .menu-icon { transform: scale(.9) rotate(-6deg); }
   .main-nav {
     position: absolute; top: 68px; left: 0; right: 0; display: flex; flex-direction: column;
     align-items: stretch; gap: 0; padding: 0 20px; background: #17232ef5;
