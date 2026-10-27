@@ -155,7 +155,7 @@ body > .site-header {
 
 .join-life-grid {
   display: grid;
-  grid-template-columns: 1.7fr 1fr 1fr;
+  grid-template-columns: 1.6fr repeat(3, minmax(0, 1fr));
   grid-template-rows: minmax(0, 1fr);
   gap: 14px;
   height: clamp(300px, 36vw, 420px);
@@ -211,7 +211,8 @@ body > .site-header {
   }
 
   .join-life-grid {
-    height: 320px;
+    height: 300px;
+    gap: 10px;
   }
 }
 
