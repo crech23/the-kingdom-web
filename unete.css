@@ -27,7 +27,7 @@ body > .site-header {
   min-height: min(630px, calc(100svh - 82px));
   display: flex;
   align-items: center;
-  padding: clamp(64px, 9vw, 112px) max(24px, calc((100vw - var(--content)) / 2));
+  padding: calc(clamp(64px, 9vw, 112px) + 82px) max(24px, calc((100vw - var(--content)) / 2)) clamp(64px, 9vw, 112px);
   background-color: #0d1217;
   background-image:
     url('public/images/crown-watermark.svg'),
@@ -211,8 +211,19 @@ body > .site-header {
   }
 
   .join-life-grid {
-    height: 300px;
-    gap: 10px;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: none;
+    height: auto;
+    gap: 12px;
+  }
+
+  .join-life-wide {
+    grid-column: 1 / -1;
+    aspect-ratio: 16 / 10;
+  }
+
+  .join-life-item:not(.join-life-wide) {
+    aspect-ratio: 3 / 4.4;
   }
 }
 
@@ -224,9 +235,9 @@ body > .site-header {
 
   .join-hero {
     min-height: 520px;
-    min-height: min(620px, calc(100svh - 68px));
+    min-height: 100svh;
     align-items: flex-end;
-    padding: 72px 22px 56px;
+    padding: 140px 22px 56px;
     background-position: 50% 38%, center, center;
     background-size: min(82vw, 380px) auto, auto, auto;
   }
