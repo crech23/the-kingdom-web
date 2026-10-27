@@ -48,7 +48,9 @@ a:focus-visible, button:focus-visible { outline: 3px solid var(--gold); outline-
   gap: 28px; padding-inline: max(24px, calc((100vw - var(--content)) / 2));
   color: #fff; border-bottom: 1px solid #ffffff30; background: #10182042;
 }
-.brand, .footer-brand { display: block; flex: 0 0 auto; width: 145px; }
+.brand, .footer-brand { display: block; flex: 0 0 auto; }
+.brand { width: 124px; }
+.footer-brand { width: 270px; max-width: 100%; }
 .brand img, .footer-brand img { width: 100%; height: auto; }
 .main-nav { display: flex; align-items: center; gap: clamp(18px, 2.4vw, 32px); }
 .main-nav > a {
@@ -238,7 +240,7 @@ a:focus-visible, button:focus-visible { outline: 3px solid var(--gold); outline-
 .contact > p { max-width: 500px; margin: 0 auto; color: #d4d9dc; font-size: 16px; }
 .contact-button { margin-top: 22px; }
 .site-footer { padding: 34px max(24px, calc((100vw - var(--content)) / 2)) 18px; background: transparent; color: #e6e8e9; }
-.footer-brand { width: 145px; }
+.footer-brand { width: 270px; }
 .footer-motto { margin: 8px 0 20px; color: #c4c8ca; font-size: 14px; }
 .social-links { display: flex; flex-wrap: wrap; gap: 9px; padding-bottom: 25px; }
 .social-button {
@@ -269,7 +271,7 @@ a:focus-visible, button:focus-visible { outline: 3px solid var(--gold); outline-
 @media (max-width: 700px) {
   html { scroll-padding-top: 68px; }
   .site-header { min-height: 68px; padding-inline: 18px; }
-  .brand { width: 126px; }
+  .brand { width: 106px; }
   .menu-toggle {
     width: 52px; height: 48px; display: flex; align-items: center; justify-content: center;
     padding: 5px; border: 1px solid #d5ad6780; border-radius: 6px;
