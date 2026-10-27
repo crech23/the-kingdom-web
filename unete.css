@@ -28,10 +28,14 @@ body > .site-header {
   display: flex;
   align-items: center;
   padding: clamp(64px, 9vw, 112px) max(24px, calc((100vw - var(--content)) / 2));
-  background:
-    linear-gradient(90deg, #080b0fef 0%, #0b1015ce 48%, #0b10155c 100%),
-    linear-gradient(0deg, #090c0f70, transparent 55%),
-    url('public/images/hero.webp') center 48% / cover no-repeat;
+  background-color: #0d1217;
+  background-image:
+    url('public/images/crown-watermark.svg'),
+    radial-gradient(ellipse at 78% 55%, #c3954d1a 0%, transparent 42%),
+    linear-gradient(120deg, #0b1015 0%, #13191e 60%, #10100f 100%);
+  background-repeat: no-repeat;
+  background-position: 78% center, center, center;
+  background-size: min(58vw, 680px) auto, auto, auto;
   color: #fff;
 }
 
@@ -166,10 +170,8 @@ body > .site-header {
     min-height: min(620px, calc(100svh - 68px));
     align-items: flex-end;
     padding: 72px 22px 56px;
-    background-image:
-      linear-gradient(0deg, #080b0ff2 0%, #080b0fc9 43%, #080b0f42 100%),
-      url('public/images/hero.webp');
-    background-position: 60% center;
+    background-position: 50% 38%, center, center;
+    background-size: min(82vw, 380px) auto, auto, auto;
   }
 
   .join-hero .eyebrow {
