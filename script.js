@@ -18,7 +18,7 @@ nav.querySelectorAll('a').forEach((link) => {
 
 document.querySelector('#year').textContent = new Date().getFullYear();
 
-const revealTargets = document.querySelectorAll('.intro-grid, .values-strip, .section-heading, .feature-card, .feature-emblem, .season-content, .gallery-item, .contact > *');
+const revealTargets = document.querySelectorAll('.intro-grid, .values-strip, .meaning-card, .section-heading, .feature-card, .feature-emblem, .season-content, .gallery-item, .contact > *');
 revealTargets.forEach((element) => element.classList.add('reveal'));
 
 if ('IntersectionObserver' in window) {

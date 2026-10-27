@@ -158,6 +158,19 @@ a:focus-visible, button:focus-visible { outline: 3px solid var(--gold); outline-
 .values-strip div { display: flex; align-items: center; }
 .values-strip strong { font-size: 15px; font-weight: 600; }
 
+.meaning-section { max-width: var(--content); margin: 42px auto 0; }
+.meaning-heading { margin-bottom: 18px; }
+.meaning-heading .intro-kicker { margin-bottom: 5px; }
+.meaning-heading h2 { margin: 0; font-size: clamp(28px, 3.2vw, 40px); line-height: 1.15; letter-spacing: -.03em; }
+.meaning-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
+.meaning-card {
+  min-width: 0; padding: 20px 22px; border: 1px solid #c3954d38;
+  border-radius: 5px; background: #11182088;
+}
+.meaning-card h3 { margin: 0 0 10px; display: flex; align-items: center; gap: 10px; font-size: 18px; }
+.meaning-card h3 img { width: 26px; height: 24px; object-fit: contain; }
+.meaning-card p { margin: 0; color: var(--muted); font-size: 15px; line-height: 1.7; }
+
 .feature-section { padding-block: 72px 84px; background: transparent; color: var(--ink); }
 .section-heading {
   max-width: var(--content); margin: 0 auto 30px; display: flex;
@@ -338,6 +351,9 @@ a:focus-visible, button:focus-visible { outline: 3px solid var(--gold); outline-
   .values-strip { gap: 12px 24px; margin-top: 24px; padding-top: 16px; }
   .values-strip strong { font-size: 14px; }
   .feature-section, .gallery-section { padding-block: 52px 58px; }
+  .meaning-section { margin-top: 30px; }
+  .meaning-grid { grid-template-columns: 1fr; gap: 12px; }
+  .meaning-card { padding: 18px; }
   .section-heading { align-items: flex-start; flex-direction: column; gap: 12px; margin-bottom: 22px; }
   .section-heading > p { font-size: 15px; }
   .feature-grid { grid-template-columns: 1fr 1fr; gap: 13px; }
