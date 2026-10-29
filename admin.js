@@ -271,13 +271,13 @@
       return;
     }
     resetPasswordButton.disabled = true;
-    const redirectTo = `${window.location.origin}${window.location.pathname}`;
-    const { error } = await client.auth.resetPasswordForEmail(email, { redirectTo });
+    // Use the project's configured Site URL so recovery links follow Supabase's
+    // default destination and don't fail on a missing redirect allow-list entry.
+    const { error } = await client.auth.resetPasswordForEmail(email);
     resetPasswordButton.disabled = false;
     setStatus(error
-      ? 'No se pudo enviar el enlace. Revisa la URL permitida en Supabase e inténtalo de nuevo.'
-      : 'Si el correo está registrado, recibirás un enlace para crear una contraseña.');
-    if (error) status.classList.add('is-error');
+      ? `Supabase no pudo enviar el enlace: ${error.message}`
+      : 'Si el correo está registrado, recibirás un enlace para crear una contraseña.', Boolean(error));
   });
 
   editor.addEventListener('submit', saveCommunication);
