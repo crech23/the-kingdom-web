@@ -24,7 +24,7 @@ nav.querySelectorAll('a').forEach((link) => {
 
 document.querySelector('#year').textContent = new Date().getFullYear();
 
-const revealTargets = document.querySelectorAll('.intro-grid, .values-strip, .meaning-card, .section-heading, .feature-card, .feature-emblem, .season-content, .gallery-item, .moments-heading, .join-life, .join-life-item, .contact > *');
+const revealTargets = document.querySelectorAll('.intro-grid, .values-strip, .meaning-card, .section-heading, .feature-card, .feature-emblem, .season-content, .gallery-item, .moments-heading, .donation-card, .announcement-card, .activity-cta, .join-life, .join-life-item, .contact > *');
 revealTargets.forEach((element) => {
   element.classList.add('reveal');
   if (element.matches('.feature-card, .gallery-item, .join-life-item, .meaning-card')) {
