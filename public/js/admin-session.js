@@ -18,10 +18,10 @@
     const active = window.localStorage.getItem(storageKey) === 'active';
     document.querySelectorAll('.nav-login').forEach((link) => {
       link.hidden = active;
-      link.href = 'admin.html';
-      if (!active) link.textContent = 'Login';
-      link.classList.remove('is-signed-in');
       if (!active && link.hasAttribute('aria-current')) link.removeAttribute('aria-current');
+    });
+    document.querySelectorAll('.nav-session-status').forEach((label) => {
+      label.hidden = !active;
     });
   };
 
