@@ -2,10 +2,15 @@
   const client = window.kingdomSupabase;
   const status = document.querySelector('#admin-status');
   const loginForm = document.querySelector('#login-form');
+  const passwordForm = document.querySelector('#invite-password-form');
   const manager = document.querySelector('#admin-manager');
   const editor = document.querySelector('#communication-form');
   const list = document.querySelector('#admin-post-list');
-  if (!status || !loginForm || !manager || !editor || !list) return;
+  if (!status || !loginForm || !passwordForm || !manager || !editor || !list) return;
+
+  const callbackParams = new URLSearchParams(window.location.hash.slice(1));
+  const queryParams = new URLSearchParams(window.location.search);
+  const isAuthCallback = ['invite', 'recovery'].includes(callbackParams.get('type')) || queryParams.has('code');
 
   const setStatus = (text, isError = false) => {
     status.textContent = text;
@@ -20,6 +25,9 @@
   const getForm = (selector) => document.querySelector(selector);
   const loginEmail = getForm('#login-email');
   const loginPassword = getForm('#login-password');
+  const newPassword = getForm('#new-password');
+  const confirmPassword = getForm('#confirm-password');
+  const resetPasswordButton = getForm('#password-reset-button');
   const postId = getForm('#communication-id');
   const currentImage = getForm('#current-image-url');
   const titleInput = getForm('#post-title');
@@ -33,6 +41,16 @@
   const saveButton = getForm('#save-button');
   const cancelButton = getForm('#cancel-edit-button');
   let activeUser = null;
+
+  const showPasswordForm = (user) => {
+    loginForm.hidden = true;
+    passwordForm.hidden = false;
+    getForm('#invite-password-title').textContent = callbackParams.get('type') === 'recovery'
+      ? 'Restablece tu contraseña'
+      : 'Crea tu contraseña';
+    getForm('#invite-password-help').textContent = `Define una contraseña para ${user.email || 'tu cuenta'}.`;
+    setStatus('Enlace verificado. Ya puedes definir tu contraseña.');
+  };
 
   const localDate = (date = new Date()) => {
     const year = date.getFullYear();
@@ -217,6 +235,51 @@
     loginPassword.value = '';
   });
 
+  passwordForm.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    if (newPassword.value.length < 8) {
+      setStatus('La contraseña debe tener al menos 8 caracteres.', true);
+      return;
+    }
+    if (newPassword.value !== confirmPassword.value) {
+      setStatus('Las contraseñas no coinciden.', true);
+      return;
+    }
+
+    const submitButton = passwordForm.querySelector('button[type="submit"]');
+    submitButton.disabled = true;
+    setStatus('Guardando contraseña…');
+    const { data, error } = await client.auth.updateUser({ password: newPassword.value });
+    submitButton.disabled = false;
+    if (error) {
+      setStatus(error.message || 'No se pudo guardar la contraseña. Solicita un enlace nuevo.', true);
+      return;
+    }
+
+    passwordForm.hidden = true;
+    passwordForm.reset();
+    window.history.replaceState(null, document.title, window.location.pathname);
+    setStatus('Contraseña guardada. Comprobando permisos del panel…');
+    await verifyAdministrator(data.user);
+  });
+
+  resetPasswordButton.addEventListener('click', async () => {
+    const email = loginEmail.value.trim();
+    if (!email) {
+      setStatus('Escribe tu correo y vuelve a pulsar “¿Olvidaste tu contraseña?”.', true);
+      loginEmail.focus();
+      return;
+    }
+    resetPasswordButton.disabled = true;
+    const redirectTo = `${window.location.origin}${window.location.pathname}`;
+    const { error } = await client.auth.resetPasswordForEmail(email, { redirectTo });
+    resetPasswordButton.disabled = false;
+    setStatus(error
+      ? 'No se pudo enviar el enlace. Revisa la URL permitida en Supabase e inténtalo de nuevo.'
+      : 'Si el correo está registrado, recibirás un enlace para crear una contraseña.');
+    if (error) status.classList.add('is-error');
+  });
+
   editor.addEventListener('submit', saveCommunication);
   cancelButton.addEventListener('click', resetEditor);
   getForm('#logout-button').addEventListener('click', async () => {
@@ -231,6 +294,8 @@
 
   resetEditor();
   client.auth.getSession().then(({ data }) => {
-    if (data.session?.user) verifyAdministrator(data.session.user);
+    if (data.session?.user && isAuthCallback) showPasswordForm(data.session.user);
+    else if (data.session?.user) verifyAdministrator(data.session.user);
+    else if (isAuthCallback) setStatus('No se pudo validar el enlace. Corrige la URL en Supabase y solicita uno nuevo.', true);
   });
 })();

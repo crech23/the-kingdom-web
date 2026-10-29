@@ -11,11 +11,11 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
     <link rel="icon" type="image/png" href="public/images/crown-menu-icon.png" />
-    <link rel="stylesheet" href="styles.css?v=communications-admin-20261028" />
+    <link rel="stylesheet" href="styles.css?v=communications-invite-20261028" />
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" defer></script>
     <script src="public/js/supabase-client.js" defer></script>
     <script src="script.js?v=communications-admin-20261028" defer></script>
-    <script src="admin.js?v=communications-admin-20261028" defer></script>
+    <script src="admin.js?v=communications-invite-20261028" defer></script>
   </head>
   <body>
     <a class="skip-link" href="#contenido">Saltar al contenido</a>
@@ -57,6 +57,17 @@
           <label for="login-password">Contraseña</label>
           <input id="login-password" name="password" type="password" autocomplete="current-password" required />
           <button class="button button-gold" type="submit">Entrar al panel <span aria-hidden="true">↗</span></button>
+          <button class="admin-text-button" id="password-reset-button" type="button">¿Olvidaste tu contraseña?</button>
+        </form>
+
+        <form class="admin-card admin-login" id="invite-password-form" autocomplete="on" hidden>
+          <h2 id="invite-password-title">Crea tu contraseña</h2>
+          <p id="invite-password-help">La invitación fue validada. Elige una contraseña para acceder al panel.</p>
+          <label for="new-password">Nueva contraseña</label>
+          <input id="new-password" name="new-password" type="password" autocomplete="new-password" minlength="8" required />
+          <label for="confirm-password">Confirma la contraseña</label>
+          <input id="confirm-password" name="confirm-password" type="password" autocomplete="new-password" minlength="8" required />
+          <button class="button button-gold" type="submit">Guardar contraseña</button>
         </form>
 
         <section class="admin-manager" id="admin-manager" hidden>
