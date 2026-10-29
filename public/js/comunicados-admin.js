@@ -14,6 +14,7 @@
   const excerptInput = get('#post-excerpt');
   const contentInput = get('#post-content');
   const imageInput = get('#post-image');
+  const imageName = get('#post-image-name');
   const imageAltInput = get('#post-image-alt');
   const dateInput = get('#post-date');
   const publishedInput = get('#post-published');
@@ -91,6 +92,7 @@
     dateInput.value = post.published_at ? localDate(new Date(post.published_at)) : localDate();
     publishedInput.checked = post.is_published;
     imageInput.value = '';
+    if (imageName) imageName.textContent = 'Ninguna imagen seleccionada';
     editorTitle.textContent = 'Editar comunicado';
     saveButton.textContent = 'Guardar cambios';
     cancelButton.hidden = false;
@@ -99,6 +101,7 @@
 
   const resetEditor = () => {
     editor.reset();
+    if (imageName) imageName.textContent = 'Ninguna imagen seleccionada';
     postId.value = '';
     currentImage.value = '';
     dateInput.value = localDate();
@@ -188,6 +191,7 @@
 
     activeUser = user;
     manager.hidden = true;
+    document.body.classList.remove('admin-editing-open');
     editButton.hidden = false;
     editButton.textContent = 'Editar comunicados';
     window.kingdomAdminSession?.activate();
@@ -196,6 +200,7 @@
 
   editButton.addEventListener('click', async () => {
     manager.hidden = !manager.hidden;
+    document.body.classList.toggle('admin-editing-open', !manager.hidden);
     editButton.textContent = manager.hidden ? 'Editar comunicados' : 'Ocultar editor';
     if (!manager.hidden) {
       resetEditor();
@@ -204,11 +209,16 @@
     }
   });
 
+  imageInput.addEventListener('change', () => {
+    if (imageName) imageName.textContent = imageInput.files[0]?.name || 'Ninguna imagen seleccionada';
+  });
+
   editor.addEventListener('submit', saveCommunication);
   cancelButton.addEventListener('click', resetEditor);
   logoutButton.addEventListener('click', async () => {
     await client.auth.signOut();
     manager.hidden = true;
+    document.body.classList.remove('admin-editing-open');
     editButton.hidden = true;
     editButton.textContent = 'Editar comunicados';
     activeUser = null;
@@ -224,6 +234,7 @@
   client.auth.onAuthStateChange((event, session) => {
     if (event === 'SIGNED_OUT' || !session?.user) {
       manager.hidden = true;
+      document.body.classList.remove('admin-editing-open');
       editButton.hidden = true;
       editButton.textContent = 'Editar comunicados';
       activeUser = null;
