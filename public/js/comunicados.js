@@ -106,5 +106,6 @@
     }));
   };
 
+  window.addEventListener('kingdom:communications-updated', load);
   load();
 })();

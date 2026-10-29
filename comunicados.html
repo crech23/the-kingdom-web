@@ -19,11 +19,13 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
     <link rel="icon" type="image/png" href="public/images/crown-menu-icon.png" />
-    <link rel="stylesheet" href="styles.css?v=menu-login-20261028" />
+    <link rel="stylesheet" href="styles.css?v=admin-tools-20261028" />
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" defer></script>
     <script src="public/js/supabase-client.js?v=communications-admin-20261028" defer></script>
     <script src="script.js?v=communications-admin-20261028" defer></script>
-    <script src="public/js/comunicados.js?v=communications-admin-20261028" defer></script>
+    <script src="public/js/comunicados.js?v=inline-admin-20261028" defer></script>
+    <script src="public/js/admin-session.js?v=admin-session-20261028" defer></script>
+    <script src="public/js/comunicados-admin.js?v=communications-inline-admin-20261028" defer></script>
   </head>
   <body>
     <a class="skip-link" href="#contenido">Saltar al contenido</a>
@@ -54,6 +56,42 @@
           </div>
           <p>Información de The Kingdom sobre ensayos, presentaciones, convocatorias y actividades.</p>
         </div>
+        <section class="admin-manager announcement-admin-tools" id="admin-tools" hidden aria-label="Herramientas de administración">
+          <p class="admin-notice" id="communications-admin-status" role="status" aria-live="polite"></p>
+          <div class="admin-manager-heading">
+            <div>
+              <p class="intro-kicker">Sesión de administrador activa</p>
+              <h2>Administrar comunicados</h2>
+            </div>
+            <button class="button button-outline" type="button" id="logout-button">Cerrar sesión</button>
+          </div>
+          <form class="admin-card admin-editor" id="communication-form">
+            <input id="communication-id" name="id" type="hidden" />
+            <input id="current-image-url" name="current_image_url" type="hidden" />
+            <h3 id="editor-title">Crear comunicado</h3>
+            <label for="post-title">Título</label>
+            <input id="post-title" name="title" maxlength="140" required />
+            <label for="post-excerpt">Texto de portada</label>
+            <textarea id="post-excerpt" name="excerpt" rows="3" maxlength="500" required></textarea>
+            <label for="post-content">Texto completo <span>(opcional)</span></label>
+            <textarea id="post-content" name="content" rows="6"></textarea>
+            <label for="post-image">Imagen <span>(JPG, PNG o WEBP, máximo 10 MB)</span></label>
+            <input id="post-image" name="image" type="file" accept="image/jpeg,image/png,image/webp" />
+            <label for="post-image-alt">Descripción de imagen</label>
+            <input id="post-image-alt" name="image_alt" maxlength="240" />
+            <label for="post-date">Fecha de publicación</label>
+            <input id="post-date" name="published_at" type="date" required />
+            <label class="admin-checkbox" for="post-published">
+              <input id="post-published" name="is_published" type="checkbox" checked />
+              Publicado en el sitio
+            </label>
+            <div class="admin-form-actions">
+              <button class="button button-gold" type="submit" id="save-button">Guardar comunicado</button>
+              <button class="button button-outline" type="button" id="cancel-edit-button" hidden>Cancelar edición</button>
+            </div>
+          </form>
+          <div class="admin-post-list" id="admin-post-list" aria-live="polite"></div>
+        </section>
         <div class="announcement-feed" aria-label="Publicaciones oficiales" data-announcement-feed>
           <article class="social-post announcement-post" aria-labelledby="official-announcement-title">
             <header class="social-post-header">
