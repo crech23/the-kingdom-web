@@ -43,26 +43,31 @@ as $$
   );
 $$;
 
-revoke all on function public.is_communications_admin() from public, anon;
-grant execute on function public.is_communications_admin() to authenticated;
+revoke all on function public.is_communications_admin() from public, anon, authenticated;
+grant execute on function public.is_communications_admin() to anon, authenticated;
 
+drop policy if exists "Admins can view admin assignments" on public.communication_admins;
 create policy "Admins can view admin assignments"
   on public.communication_admins for select to authenticated
   using (user_id = (select auth.uid()) or (select public.is_communications_admin()));
 
+drop policy if exists "Anyone can read published communications" on public.communications;
 create policy "Anyone can read published communications"
   on public.communications for select to anon, authenticated
   using (is_published or (select public.is_communications_admin()));
 
+drop policy if exists "Admins can create communications" on public.communications;
 create policy "Admins can create communications"
   on public.communications for insert to authenticated
   with check ((select public.is_communications_admin()));
 
+drop policy if exists "Admins can update communications" on public.communications;
 create policy "Admins can update communications"
   on public.communications for update to authenticated
   using ((select public.is_communications_admin()))
   with check ((select public.is_communications_admin()));
 
+drop policy if exists "Admins can delete communications" on public.communications;
 create policy "Admins can delete communications"
   on public.communications for delete to authenticated
   using ((select public.is_communications_admin()));
@@ -78,6 +83,7 @@ begin
 end;
 $$;
 
+drop trigger if exists communications_set_updated_at on public.communications;
 create trigger communications_set_updated_at
   before update on public.communications
   for each row execute function public.set_communications_updated_at();
@@ -95,19 +101,23 @@ set public = excluded.public,
     file_size_limit = excluded.file_size_limit,
     allowed_mime_types = excluded.allowed_mime_types;
 
+drop policy if exists "Public can view communication images" on storage.objects;
 create policy "Public can view communication images"
   on storage.objects for select to anon, authenticated
   using (bucket_id = 'communications');
 
+drop policy if exists "Admins can upload communication images" on storage.objects;
 create policy "Admins can upload communication images"
   on storage.objects for insert to authenticated
   with check (bucket_id = 'communications' and (select public.is_communications_admin()));
 
+drop policy if exists "Admins can update communication images" on storage.objects;
 create policy "Admins can update communication images"
   on storage.objects for update to authenticated
   using (bucket_id = 'communications' and (select public.is_communications_admin()))
   with check (bucket_id = 'communications' and (select public.is_communications_admin()));
 
+drop policy if exists "Admins can delete communication images" on storage.objects;
 create policy "Admins can delete communication images"
   on storage.objects for delete to authenticated
   using (bucket_id = 'communications' and (select public.is_communications_admin()));
