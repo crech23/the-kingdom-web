@@ -19,11 +19,11 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
     <link rel="icon" type="image/png" href="public/images/crown-menu-icon.png" />
-    <link rel="stylesheet" href="styles.css?v=session-label-20261028" />
+    <link rel="stylesheet" href="styles.css?v=announcement-image-zoom-20261029" />
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" defer></script>
     <script src="public/js/supabase-client.js?v=communications-admin-20261028" defer></script>
     <script src="script.js?v=communications-admin-20261028" defer></script>
-    <script src="public/js/comunicados.js?v=inline-admin-20261028" defer></script>
+    <script src="public/js/comunicados.js?v=announcement-image-zoom-20261029" defer></script>
     <script src="public/js/admin-session.js?v=admin-session-label-20261028" defer></script>
     <script src="public/js/comunicados-admin.js?v=comunicados-editor-button-20261028" defer></script>
   </head>
@@ -95,26 +95,14 @@
           <div class="admin-post-list" id="admin-post-list" aria-live="polite"></div>
         </section>
         <div class="announcement-feed" aria-label="Publicaciones oficiales" data-announcement-feed>
-          <article class="social-post announcement-post" aria-labelledby="official-announcement-title">
-            <header class="social-post-header">
-              <img class="social-post-avatar" src="public/images/crown-menu-icon.png" alt="" aria-hidden="true" />
-              <div class="social-post-author">
-                <h2 id="official-announcement-title">The Kingdom</h2>
-                <p>Comunicado oficial <span aria-hidden="true">·</span> <time datetime="2026-10-25">25 de octubre de 2026</time></p>
-              </div>
-              <span class="official-badge">Oficial</span>
-            </header>
-            <p class="social-post-caption">Compartimos nuestra historia, el origen de nuestro nombre y el camino que estamos construyendo como comunidad musical. Gracias por acompañarnos.</p>
-            <a class="social-post-media" href="public/images/comunicado-oficial-2026.jpg" target="_blank" rel="noopener noreferrer" aria-label="Abrir el comunicado oficial completo en una nueva pestaña">
-              <img src="public/images/comunicado-oficial-2026.jpg" alt="Comunicado oficial de The Kingdom: historia del proyecto, origen de su nombre y mensaje a la comunidad, fechado el 25 de octubre de 2026." loading="lazy" />
-            </a>
-            <footer class="social-post-actions" aria-label="Acciones del comunicado">
-              <a href="https://www.instagram.com/thekingdom_es/" target="_blank" rel="noopener noreferrer"><span aria-hidden="true">◎</span> Instagram</a>
-              <a href="https://www.tiktok.com/@the.kingdomc" target="_blank" rel="noopener noreferrer"><span aria-hidden="true">♪</span> TikTok</a>
-              <a href="public/images/comunicado-oficial-2026.jpg" target="_blank" rel="noopener noreferrer"><span aria-hidden="true">↗</span> Ver completo</a>
-            </footer>
-          </article>
+          <p class="empty-announcements">Cargando comunicados…</p>
         </div>
+        <dialog class="announcement-dialog" id="announcement-dialog" aria-labelledby="announcement-dialog-heading">
+          <div class="announcement-dialog-panel">
+            <button class="announcement-dialog-close" type="button" aria-label="Cerrar comunicado">×</button>
+            <article class="social-post announcement-detail" id="announcement-detail"></article>
+          </div>
+        </dialog>
       </section>
     </main>
     <footer class="site-footer">
