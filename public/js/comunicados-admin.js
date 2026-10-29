@@ -1,10 +1,11 @@
 (() => {
   const client = window.kingdomSupabase;
   const manager = document.querySelector('#admin-tools');
+  const editButton = document.querySelector('#edit-communications-button');
   const status = document.querySelector('#communications-admin-status');
   const editor = document.querySelector('#communication-form');
   const list = document.querySelector('#admin-post-list');
-  if (!client || !manager || !status || !editor || !list) return;
+  if (!client || !manager || !editButton || !status || !editor || !list) return;
 
   const get = (selector) => document.querySelector(selector);
   const postId = get('#communication-id');
@@ -179,24 +180,37 @@
       .maybeSingle();
     if (error || !data) {
       manager.hidden = true;
+      editButton.hidden = true;
       activeUser = null;
       window.kingdomAdminSession?.clear();
       return;
     }
 
     activeUser = user;
-    manager.hidden = false;
+    manager.hidden = true;
+    editButton.hidden = false;
+    editButton.textContent = 'Editar comunicados';
     window.kingdomAdminSession?.activate();
-    setStatus(`Sesión iniciada como ${user.email}. Aquí puedes crear, editar y publicar comunicados.`);
-    resetEditor();
-    await loadCommunications();
+    setStatus(`Sesión iniciada como ${user.email}.`);
   };
+
+  editButton.addEventListener('click', async () => {
+    manager.hidden = !manager.hidden;
+    editButton.textContent = manager.hidden ? 'Editar comunicados' : 'Ocultar editor';
+    if (!manager.hidden) {
+      resetEditor();
+      await loadCommunications();
+      manager.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  });
 
   editor.addEventListener('submit', saveCommunication);
   cancelButton.addEventListener('click', resetEditor);
   logoutButton.addEventListener('click', async () => {
     await client.auth.signOut();
     manager.hidden = true;
+    editButton.hidden = true;
+    editButton.textContent = 'Editar comunicados';
     activeUser = null;
     window.kingdomAdminSession?.clear();
     setStatus('Sesión cerrada.');
@@ -210,6 +224,8 @@
   client.auth.onAuthStateChange((event, session) => {
     if (event === 'SIGNED_OUT' || !session?.user) {
       manager.hidden = true;
+      editButton.hidden = true;
+      editButton.textContent = 'Editar comunicados';
       activeUser = null;
       window.kingdomAdminSession?.clear();
       return;

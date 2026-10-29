@@ -4,7 +4,8 @@
   const syncFromStoredAuth = () => {
     try {
       const storedSession = JSON.parse(window.localStorage.getItem(supabaseStorageKey) || 'null');
-      if (storedSession?.access_token && storedSession?.user) {
+      const tokenStillValid = !storedSession?.expires_at || storedSession.expires_at * 1000 > Date.now();
+      if (storedSession?.access_token && storedSession?.user && tokenStillValid) {
         window.localStorage.setItem(storageKey, 'active');
       } else {
         window.localStorage.removeItem(storageKey);
@@ -16,10 +17,11 @@
   const updateNavigation = () => {
     const active = window.localStorage.getItem(storageKey) === 'active';
     document.querySelectorAll('.nav-login').forEach((link) => {
-      link.textContent = active ? 'Sesión iniciada' : 'Login';
-      link.href = active ? 'comunicados.html#admin-tools' : 'admin.html';
-      link.classList.toggle('is-signed-in', active);
-      if (active) link.removeAttribute('aria-current');
+      link.hidden = active;
+      link.href = 'admin.html';
+      if (!active) link.textContent = 'Login';
+      link.classList.remove('is-signed-in');
+      if (!active && link.hasAttribute('aria-current')) link.removeAttribute('aria-current');
     });
   };
 

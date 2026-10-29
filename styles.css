@@ -79,6 +79,8 @@ a:focus-visible, button:focus-visible { outline: 3px solid var(--gold); outline-
 }
 .main-nav .nav-login:hover { color: #171614; background: var(--gold-dark); }
 .main-nav .nav-login.is-signed-in { background: #c3954d26; }
+.announcement-admin-entry { margin-top: 14px; }
+.announcement-admin-entry[hidden], .announcement-admin-tools[hidden] { display: none !important; }
 .main-nav .nav-cta {
   padding: 10px 15px; border: 1px solid #ffffffa0; border-radius: 4px;
   color: #fff; transition: background .18s ease, color .18s ease;
