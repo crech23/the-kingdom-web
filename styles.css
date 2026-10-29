@@ -422,11 +422,11 @@ body.lightbox-open { overflow: hidden; }
 .social-button:hover { background: #ffffff14; border-color: #ffffffa0; }
 .social-button span + span { color: #e0b466; }
 .footer-bottom {
-  display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
-  align-items: center; gap: 10px 20px;
+  display: flex; flex-direction: column; align-items: center;
+  text-align: center; gap: 10px;
   padding-top: 15px; border-top: 1px solid #ffffff25; color: #aeb5b9; font-size: 12px;
 }
-.footer-bottom > :last-child { text-align: right; }
+.footer-bottom > :last-child { text-align: center; }
 .footer-bottom a { color: #f1d19a; }
 .reveal {
   opacity: 0;
