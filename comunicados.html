@@ -19,8 +19,11 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
     <link rel="icon" type="image/png" href="public/images/crown-menu-icon.png" />
-    <link rel="stylesheet" href="styles.css?v=footer-row-20261028" />
-    <script src="script.js?v=communications-activities-20261028" defer></script>
+    <link rel="stylesheet" href="styles.css?v=announcement-social-20261028" />
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" defer></script>
+    <script src="public/js/supabase-client.js?v=communications-admin-20261028" defer></script>
+    <script src="script.js?v=communications-admin-20261028" defer></script>
+    <script src="public/js/comunicados.js?v=communications-admin-20261028" defer></script>
   </head>
   <body>
     <a class="skip-link" href="#contenido">Saltar al contenido</a>
@@ -50,17 +53,27 @@
           </div>
           <p>Información de The Kingdom sobre ensayos, presentaciones, convocatorias y actividades.</p>
         </div>
-        <article class="announcement-card">
-          <div>
-            <p class="intro-kicker">Mantente al tanto</p>
-            <h2>Novedades de The Kingdom</h2>
-            <p>En esta página reuniremos los próximos avisos oficiales. Mientras tanto, puedes consultar nuestras redes para ver las novedades recientes.</p>
-          </div>
-          <div class="announcement-actions">
-            <a class="button button-gold" href="https://www.instagram.com/thekingdom_es/" target="_blank" rel="noopener noreferrer">Instagram <span aria-hidden="true">↗</span></a>
-            <a class="button button-outline" href="https://www.tiktok.com/@the.kingdomc" target="_blank" rel="noopener noreferrer">TikTok <span aria-hidden="true">↗</span></a>
-          </div>
-        </article>
+        <div class="announcement-feed" aria-label="Publicaciones oficiales" data-announcement-feed>
+          <article class="social-post announcement-post" aria-labelledby="official-announcement-title">
+            <header class="social-post-header">
+              <img class="social-post-avatar" src="public/images/crown-menu-icon.png" alt="" aria-hidden="true" />
+              <div class="social-post-author">
+                <h2 id="official-announcement-title">The Kingdom</h2>
+                <p>Comunicado oficial <span aria-hidden="true">·</span> <time datetime="2026-10-25">25 de octubre de 2026</time></p>
+              </div>
+              <span class="official-badge">Oficial</span>
+            </header>
+            <p class="social-post-caption">Compartimos nuestra historia, el origen de nuestro nombre y el camino que estamos construyendo como comunidad musical. Gracias por acompañarnos.</p>
+            <a class="social-post-media" href="public/images/comunicado-oficial-2026.jpg" target="_blank" rel="noopener noreferrer" aria-label="Abrir el comunicado oficial completo en una nueva pestaña">
+              <img src="public/images/comunicado-oficial-2026.jpg" alt="Comunicado oficial de The Kingdom: historia del proyecto, origen de su nombre y mensaje a la comunidad, fechado el 25 de octubre de 2026." loading="lazy" />
+            </a>
+            <footer class="social-post-actions" aria-label="Acciones del comunicado">
+              <a href="https://www.instagram.com/thekingdom_es/" target="_blank" rel="noopener noreferrer"><span aria-hidden="true">◎</span> Instagram</a>
+              <a href="https://www.tiktok.com/@the.kingdomc" target="_blank" rel="noopener noreferrer"><span aria-hidden="true">♪</span> TikTok</a>
+              <a href="public/images/comunicado-oficial-2026.jpg" target="_blank" rel="noopener noreferrer"><span aria-hidden="true">↗</span> Ver completo</a>
+            </footer>
+          </article>
+        </div>
       </section>
     </main>
     <footer class="site-footer">

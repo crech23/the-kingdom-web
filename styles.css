@@ -223,15 +223,82 @@ main.page-interior { padding-top: 78px; }
 .card-content { padding: 16px 18px 20px; }
 .card-label { color: var(--gold-dark); font-size: 14px; font-weight: 700; }
 .card-content p { margin: 5px 0 0; color: var(--muted); font-size: 15px; line-height: 1.55; }
-.announcement-card {
-  max-width: var(--content); margin: 0 auto; padding: clamp(24px, 4vw, 42px);
-  display: flex; align-items: center; justify-content: space-between; gap: 28px;
-  border: 1px solid #c3954d62; border-radius: 5px;
-  background: linear-gradient(135deg, #1a1c1dce, #111519ed);
+.announcement-feed { max-width: 780px; margin: 0 auto; }
+.social-post {
+  overflow: hidden; border: 1px solid #ffffff24; border-radius: 8px;
+  background: linear-gradient(145deg, #181b1d, #111519);
+  box-shadow: 0 18px 48px #00000030;
 }
-.announcement-card h2 { margin: 0 0 10px; font-size: clamp(24px, 3vw, 32px); line-height: 1.2; }
-.announcement-card p:not(.intro-kicker) { max-width: 650px; margin: 0; color: var(--muted); line-height: 1.7; }
-.announcement-actions { display: flex; flex: 0 0 auto; flex-wrap: wrap; gap: 10px; }
+.social-post-header { display: flex; align-items: center; gap: 12px; padding: 16px 18px; }
+.social-post-avatar {
+  width: 46px; height: 46px; flex: 0 0 46px; padding: 7px;
+  border: 1px solid #c3954d80; border-radius: 50%; background: #0c1013; object-fit: contain;
+}
+.social-post-author { min-width: 0; }
+.social-post-author h2 { margin: 0; color: var(--ink); font-size: 16px; line-height: 1.25; }
+.social-post-author p { margin: 4px 0 0; color: var(--muted); font-size: 12px; line-height: 1.4; }
+.official-badge {
+  margin-left: auto; padding: 5px 9px; border: 1px solid #c3954d70; border-radius: 999px;
+  color: var(--gold-dark); font-size: 11px; font-weight: 700; letter-spacing: .04em;
+}
+.social-post-caption { margin: 0; padding: 0 18px 17px; color: #e2e4e4; font-size: 15px; line-height: 1.65; }
+.social-post-media { display: block; padding: 12px; border-block: 1px solid #ffffff18; background: #0b0d0f; }
+.social-post-media img { display: block; width: min(100%, 607px); height: auto; margin-inline: auto; border-radius: 3px; }
+.social-post-actions { display: flex; justify-content: space-around; flex-wrap: wrap; gap: 8px; padding: 13px 12px; }
+.social-post-actions a {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  min-height: 38px; padding: 7px 12px; border-radius: 4px; color: #e6e8e9;
+  font-size: 13px; transition: color .2s ease, background .2s ease;
+}
+.social-post-actions a:hover { color: var(--gold-dark); background: #ffffff0d; }
+.social-post-actions a span { color: var(--gold-dark); font-size: 17px; }
+.social-post-details { margin: 0; padding: 0 18px 16px; color: var(--muted); font-size: 14px; line-height: 1.65; }
+.social-post-details summary { color: var(--gold-dark); cursor: pointer; font-weight: 600; }
+.social-post-details p { margin: 12px 0 0; white-space: pre-line; }
+.empty-announcements { margin: 0; padding: 30px; border: 1px solid var(--line); color: var(--muted); text-align: center; }
+.admin-page { min-height: 70vh; }
+.admin-notice { max-width: 760px; min-height: 22px; margin: 0 auto 16px; color: var(--gold-dark); text-align: center; }
+.admin-notice.is-error, .admin-list-message.is-error { color: #ff9b91; }
+.admin-card {
+  border: 1px solid #c3954d62; border-radius: 6px;
+  background: linear-gradient(145deg, #181b1d, #111519);
+  box-shadow: 0 18px 48px #00000024;
+}
+.admin-login { max-width: 560px; margin: 0 auto; padding: clamp(22px, 4vw, 36px); display: grid; gap: 12px; }
+.admin-login h2, .admin-manager-heading h2 { margin: 0; font-size: clamp(24px, 3vw, 32px); }
+.admin-login p { margin: 0 0 8px; color: var(--muted); line-height: 1.6; }
+.admin-page label { color: var(--ink); font-size: 14px; font-weight: 600; }
+.admin-page label span { color: var(--muted); font-size: 12px; font-weight: 400; }
+.admin-page input:not([type='checkbox']):not([type='file']),
+.admin-page textarea,
+.admin-page input[type='file'] {
+  width: 100%; min-height: 44px; padding: 11px 12px; border: 1px solid #ffffff36;
+  border-radius: 4px; background: #0d1114; color: var(--ink); font: inherit;
+}
+.admin-page textarea { min-height: 110px; resize: vertical; }
+.admin-page input[type='file'] { padding: 9px; color: var(--muted); }
+.admin-page input:focus, .admin-page textarea:focus { outline: 2px solid #e0b466; outline-offset: 2px; }
+.admin-login .button { justify-self: start; margin-top: 8px; }
+.admin-manager { max-width: 900px; margin: 0 auto; }
+.admin-manager-heading { display: flex; align-items: center; justify-content: space-between; gap: 20px; margin: 22px 0 18px; }
+.admin-manager-heading .intro-kicker { margin-bottom: 5px; }
+.admin-editor { padding: clamp(20px, 4vw, 34px); display: grid; gap: 11px; scroll-margin-top: 95px; }
+.admin-editor h3 { margin: 0 0 6px; font-size: 22px; }
+.admin-checkbox { display: flex; align-items: center; gap: 10px; margin-top: 4px; }
+.admin-checkbox input { width: 18px; height: 18px; accent-color: var(--gold); }
+.admin-form-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 8px; }
+.admin-post-list { display: grid; gap: 12px; margin-top: 18px; }
+.admin-list-message { margin: 0; padding: 18px 0; color: var(--muted); text-align: center; }
+.admin-post-row { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding: 17px; border: 1px solid var(--line); border-radius: 5px; background: #ffffff06; }
+.admin-post-summary { min-width: 0; }
+.admin-post-summary h3 { margin: 0 0 5px; font-size: 17px; }
+.admin-post-summary p { margin: 0 0 8px; overflow-wrap: anywhere; color: var(--muted); font-size: 14px; line-height: 1.5; }
+.admin-post-state { color: var(--muted); font-size: 12px; }
+.admin-post-state.is-published { color: var(--gold-dark); }
+.admin-row-actions { display: flex; flex: 0 0 auto; gap: 8px; }
+.admin-row-actions .button { min-height: 38px; padding: 8px 11px; font-size: 13px; }
+.admin-delete:hover { border-color: #ff9b91; color: #ffb4ab; }
+.admin-page [hidden] { display: none !important; }
 .activity-cta {
   max-width: var(--content); margin: 30px auto 0; padding-top: 22px;
   display: flex; align-items: center; justify-content: space-between; gap: 20px;
@@ -568,9 +635,16 @@ body.lightbox-open { overflow: hidden; }
   .feature-card-metal img { aspect-ratio: 1.5; }
   .card-content { padding: 12px 12px 15px; }
   .card-content p { font-size: 13px; }
-  .announcement-card { align-items: flex-start; flex-direction: column; gap: 20px; }
-  .announcement-actions { width: 100%; }
-  .announcement-actions .button { flex: 1 1 120px; }
+  .social-post-header { padding: 14px; }
+  .social-post-caption { padding-inline: 14px; font-size: 14px; }
+  .social-post-media { padding: 8px; }
+  .social-post-actions { justify-content: space-between; padding-inline: 6px; }
+  .social-post-actions a { flex: 1 1 auto; padding-inline: 8px; font-size: 12px; }
+  .social-post-details { padding-inline: 14px; }
+  .admin-manager-heading { align-items: flex-start; flex-direction: column; gap: 12px; }
+  .admin-post-row { align-items: flex-start; flex-direction: column; gap: 14px; }
+  .admin-row-actions { width: 100%; }
+  .admin-row-actions .button { flex: 1; }
   .activity-cta { align-items: flex-start; flex-direction: column; gap: 12px; }
   .season { min-height: 0; }
   .season-content { padding-block: 58px; }
